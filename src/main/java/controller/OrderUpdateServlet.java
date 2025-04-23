@@ -10,37 +10,32 @@ import model.dto.OrderDTO;
 import service.OrderService;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
- * Servlet implementation class OrderServlet
+ * Servlet implementation class OrderUpdateServlet
  */
-@WebServlet("/order")
-public class OrderServlet extends HttpServlet {
+@WebServlet("/order/update")
+public class OrderUpdateServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+private OrderService orderService = new OrderService();
 	
-	private OrderService orderService = new OrderService();
-	
-	// 查看歷史資料
+	// 根據 index 呈現修改表單(update.jsp)
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 得到歷史紀錄
-		List<OrderDTO> orderDTOs = orderService.getOrderHistory();
-		// 重導到指定 jsp 並帶上歷史紀錄資料
-		int totalPrice = orderDTOs.size() * 100; 
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/history.jsp");
-		req.setAttribute("orderDTOs", orderDTOs);
-		req.setAttribute("totalPrice", totalPrice);
+		String index = req.getParameter("index");
+		// 重導到指定 jsp 並帶上 index
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/update.jsp");
+		req.setAttribute("index", index);
 		rd.forward(req, resp);
 	}
-	
-	// 接收訂單的請求
+
+	// 修改表單
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		// 取得使用者在表單中所訂購的商品
-		String item = req.getParameter("item"); 
-		// 新增訂單並會得到反饋
-		OrderDTO orderDTO = orderService.addOrder(item);
+		String index = req.getParameter("index");
+		String item = req.getParameter("item");
+		OrderDTO orderDTO = orderService.updateOrder(Integer.parseInt(index), item);
 		// 重導到指定 jsp 並帶上歷史反饋資料(OrderDTO)
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/result.jsp");
 		req.setAttribute("orderDTO", orderDTO);

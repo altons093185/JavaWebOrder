@@ -6,9 +6,10 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+
 public class Order {	
+	@Getter
+	@Setter
 	private String item;
 	private Integer price;
 	
