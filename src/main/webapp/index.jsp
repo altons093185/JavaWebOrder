@@ -20,9 +20,9 @@
 				<legend>訂單</legend>
 				品名: 
 				<select name="item">
-					<option value="牛肉麵">牛肉麵</option>
-					<option value="陽春麵">陽春麵</option>
-					<option value="番茄麵">番茄麵</option>
+					<c:forEach var="product" items="${products}">
+				 		<option value="${product.item}">${product.item}</option>
+  				 	</c:forEach>
 				</select>
 				<p />
 				<button type="submit" class="button-success pure-button">送出訂單</button>

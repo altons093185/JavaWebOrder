@@ -49,6 +49,7 @@ public class OrderServlet extends HttpServlet {
 		// 重導到指定 jsp 並帶上歷史反饋資料(OrderDTO)
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/result.jsp");
 		req.setAttribute("orderDTO", orderDTO);
+		req.setAttribute("products", productService.findAll());
 		rd.forward(req, resp);
 	}
 

@@ -25,6 +25,8 @@ public class ProductService {
 		return new ProductDTO(product.getItem(), product.getPrice());
 	}
 	
+
+	
 	// 根據 message 取得價格(模糊比對)
 	public Integer getPrice(String message) {
 		return productDAO.findAll()
