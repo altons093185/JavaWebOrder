@@ -16,8 +16,8 @@ import java.io.IOException;
  */
 @WebServlet("/order/update")
 public class OrderUpdateServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-private OrderService orderService = new OrderService();
+	
+	private OrderService orderService = new OrderService();
 	
 	// 根據 index 呈現修改表單(update.jsp)
 	@Override
