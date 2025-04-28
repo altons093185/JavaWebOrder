@@ -12,6 +12,24 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 		<link rel="stylesheet" href="/JavaWebOrder/css/buttons.css">
 		
+		 <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('<%=request.getContextPath()%>/api/products')
+                .then(response => response.json())
+                .then(data => {
+                    const ul = document.getElementById("productList");
+                    data.forEach(product => {
+                        const li = document.createElement("li");
+                        li.textContent = product;
+                        ul.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching product list:', error);
+                });
+        });
+    </script>
+		
 	</head>
 	<body style="padding: 20px">
 	
