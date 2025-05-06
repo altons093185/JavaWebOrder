@@ -40,7 +40,7 @@
 					</tfoot>
 				</table>
 				<p />
-				<a href="/JavaWebOrder/index.jsp" class="pure-button pure-button-primary">回首頁</a>
+				<a href="/JavaWebOrder/homeServlet" class="pure-button pure-button-primary">回首頁</a>
 			</fieldset>
 		</div>
 	</body>
